@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-3">
+      <div class="timer">
+        <span class="strong-label">Time:</span> {{ timePassed | date: 'mm:ss' }}
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="timer">
+        <span class="strong-label">Moves:</span> {{ moves }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="finished">
+  <h1 class="text-success text-center">
+    Congratulations!!!<br>
+    You won in:<br>
+    {{ timePassed | date: 'mm:ss' }} minutes<br>
+    {{ moves }} moves
+  </h1>
+</div>
+<table class="table-top">
+  <tr ng-repeat="row in cardsDeck.rows">
+    <td ng-repeat="card in row.cards">
+      <div class="card_container {{ !card.faceUp ? '' : 'flip' }}" ng-click="guarding || checkCard(card)" >
+        <div class="card shadow">
+          <div class="front face"></div>
+          <div class="back face text-center pagination-center">
+            <p> {{ card.item }} </p>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+<div class="startbtn">
+  <button type="button" class="btn btn-default btn-lg" ng-disabled="gameOn == true" ng-click="startGame()">Start</button>
+</div>
